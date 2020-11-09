@@ -21,12 +21,15 @@ const App = (params) => {
         setTodos([ todo, ...todos ]);
     }
 
-    console.log(todos);
+    const removeTodo = (todoId) => {
+        setTodos(todos.filter((todo)=>(todo.task_id !== todoId)));
+    }
+    
 
     return (
         <div className="container mt-5">
             <Create todoAdded={addNewTodo} />
-            <TodoList todos={todos}/>
+            <TodoList todos={todos} todoRemoved={removeTodo} />
         </div>
     );
 }

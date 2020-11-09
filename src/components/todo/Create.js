@@ -17,7 +17,8 @@ const Create = ({ todoAdded }) => {
       formData.append("time", time);
 
       const { data } = await http().post("todo", formData);
-
+      
+      setTask('');
       todoAdded(data);
     } catch (error) {
       alert(error);
@@ -32,6 +33,7 @@ const Create = ({ todoAdded }) => {
             <input
               type="text"
               className="form-control"
+              placeholder="Type new task here..."
               onChange={(e) => setTask(e.target.value)}
               value={task}
             />
