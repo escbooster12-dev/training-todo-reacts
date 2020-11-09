@@ -6,7 +6,7 @@ import DeleteTodo from './DeleteTodo';
 const TodoList = ({todos}) => {
 
     const renderedTodos = todos.map((todo, index) => {
-        return <li className="list-group-item" key={index}>
+        return <li className="list-group-item" key={todo.task_id}>
             <div className="row">
                 <div className="col-sm-8">{todo.task_name}</div>
                 <div className="col-sm-4" align="right">

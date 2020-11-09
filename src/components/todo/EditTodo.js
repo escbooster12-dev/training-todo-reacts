@@ -2,7 +2,7 @@ import React from 'react'
 
 const EditTodo = (params) => {
     return (
-        <button>Edit</button>
+        <button className="btn btn-secondary mr-2">Edit</button>
     );
 }
 
