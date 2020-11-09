@@ -4,8 +4,8 @@ import { http } from "../../api/http_service";
 
 const Create = ({ todoAdded }) => {
   const [task, setTask] = useState("");
-  const [time, setTime] = useState("12:00:00");
-  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  // const [time, setTime] = useState("12:00:00");
+  // const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -13,8 +13,8 @@ const Create = ({ todoAdded }) => {
     try {
       let formData = new FormData();
       formData.append("task", task);
-      formData.append("date", date);
-      formData.append("time", time);
+      // formData.append("date", date);
+      // formData.append("time", time);
 
       const { data } = await http().post("todo", formData);
       
@@ -33,12 +33,12 @@ const Create = ({ todoAdded }) => {
             <input
               type="text"
               className="form-control"
-              placeholder="Type new task here..."
+              placeholder="Add new task here..."
               onChange={(e) => setTask(e.target.value)}
               value={task}
             />
           </div>
-          <div className="col-sm-4">
+          {/* <div className="col-sm-4">
             <input
               type="time"
               className="form-control"
@@ -53,7 +53,7 @@ const Create = ({ todoAdded }) => {
               onChange={(e) => setDate(e.target.value)}
               value={date}
             />
-          </div>
+          </div> */}
           <div className="col" align="right">
             <button className="btn btn-success mt-2" align="right">Add new task</button>
           </div>

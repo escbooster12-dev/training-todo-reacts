@@ -24,12 +24,22 @@ const App = (params) => {
     const removeTodo = (todoId) => {
         setTodos(todos.filter((todo)=>(todo.task_id !== todoId)));
     }
-    
+
+    const updateTodo = (updatedTodo) => {
+        const newTodos = todos.map(todo => {
+            if (todo.task_id === updatedTodo.task_id) {
+              return updatedTodo;
+            }
+            return todo;
+          });
+       
+          setTodos(newTodos);
+    }
 
     return (
         <div className="container mt-5">
             <Create todoAdded={addNewTodo} />
-            <TodoList todos={todos} todoRemoved={removeTodo} />
+            <TodoList todos={todos} todoRemoved={removeTodo} todoEdited={updateTodo}/>
         </div>
     );
 }
