@@ -11,6 +11,8 @@ const DeleteTodo = ({ todo, todoRemoved }) => {
 
         const response = await http().post(`todo/${todo.task_id}`, formData);
         todoRemoved(todo.task_id);
+
+        alert("The new task has been successfully removed!");
       } catch (error) {
         alert("error occured");
       }

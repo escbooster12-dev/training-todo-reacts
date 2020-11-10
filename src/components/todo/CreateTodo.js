@@ -17,9 +17,10 @@ const Create = ({ todoAdded }) => {
       formData.append("time", time);
 
       const { data } = await http().post("todo", formData);
-      
-      setTask('');
+
+      setTask("");
       todoAdded(data);
+      alert("The new task has been successfully added!");
     } catch (error) {
       alert(error);
       console.log(error);
@@ -56,7 +57,9 @@ const Create = ({ todoAdded }) => {
             />
           </div>
           <div className="col" align="right">
-            <button className="btn btn-success mt-2" align="right">Add new task</button>
+            <button className="btn btn-success mt-2" align="right">
+              Add new task
+            </button>
           </div>
         </div>
       </form>

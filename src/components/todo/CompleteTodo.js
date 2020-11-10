@@ -1,28 +1,26 @@
 import React, { useState } from "react";
 
-import { http } from '../../api/http_service'
+import { http } from "../../api/http_service";
 
-const CompleteTodo = ({todo}) => {
+const CompleteTodo = ({ todo }) => {
   const [completed, setCompleted] = useState({
     flag: todo.task_completed,
-    text: todo.task_completed ? "Completed" : "Complete",
+    text: todo.task_completed ? "Undo Complete" : "Complete",
   });
 
   const toggleComplete = async (params) => {
     try {
       let formData = new FormData();
-      formData.append("_method", 'PUT');
+      formData.append("_method", "PUT");
 
       await http().post(`todo/completed/${todo.task_id}`, formData);
-      
+
       setCompleted({
         flag: !completed.flag,
-        text: completed.flag ? "Complete" : "Completed",
+        text: completed.flag ? "Complete" : "Undo Complete",
       });
-
-      alert(completed.flag ? 'Task change to not complete' : 'Task is Completed');
-    }catch(error) {
-      alert('Error occured');
+    } catch (error) {
+      alert("Error occured");
       console.log(error);
     }
   };
