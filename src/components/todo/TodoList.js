@@ -14,8 +14,8 @@ const TodoList = ({todos, todoEdited, todoRemoved}) => {
                     <DeleteTodo todo={todo} todoRemoved={todoRemoved}/>
                 </div>
 
-                {/* <div className="col-sm-6">{todo.task_datetime_fmt}</div> */}
-                <div className="col-sm-6"><span className="text-secondary">posted {todo.task_created_at_fmt}</span></div>
+                <div className="col-sm-6">{todo.task_datetime}</div>
+                <div className="col-sm-6" align="right"><span className="text-secondary">posted {todo.task_created_at_fmt}</span></div>
             </div>
         </li>;
     });
