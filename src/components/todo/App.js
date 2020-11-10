@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import Create from "./Create";
 import TodoList from "./TodoList";
@@ -6,10 +6,10 @@ import TodoList from "./TodoList";
 import { http } from "../../api/http_service";
 
 import InfiniteScroll from "react-infinite-scroller";
+import { Spinner } from 'react-bootstrap';
 
 const App = (params) => {
   const [todos, setTodos] = useState([]);
-  const [maxPage, setMaxPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
   const addNewTodo = (todo) => {
@@ -55,7 +55,9 @@ const App = (params) => {
         hasMore={hasMore}
         loader={
           <div className="loader" key={0}>
-            Loading ...
+              <Spinner animation="grow" variant="dark" />
+              <Spinner animation="grow" variant="dark" />
+              <Spinner animation="grow" variant="dark" />
           </div>
         }
       >

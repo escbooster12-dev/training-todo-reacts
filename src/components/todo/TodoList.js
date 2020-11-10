@@ -2,14 +2,16 @@ import React from 'react'
 
 import EditTodo from './EditTodo';
 import DeleteTodo from './DeleteTodo';
+import CompleteTodo from './CompleteTodo';
 
 const TodoList = ({todos, todoEdited, todoRemoved}) => {
 
     const renderedTodos = todos.map((todo, index) => {
         return <li className="list-group-item" key={todo.task_id}>
             <div className="row">
-                <div className="col-sm-8">{todo.task_name}</div>
-                <div className="col-sm-4" align="right">
+                <div className="col-sm-7">{todo.task_name}</div>
+                <div className="col-sm-5" align="right">
+                    <CompleteTodo todo={todo} />
                     <EditTodo todo={todo} todoEdited={todoEdited} />
                     <DeleteTodo todo={todo} todoRemoved={todoRemoved}/>
                 </div>
