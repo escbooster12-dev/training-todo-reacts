@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import useTodos from '../../hooks/useTodos'
 
 import TodoList from "./TodoList";
 import InfiniteScroll from "react-infinite-scroller";
@@ -7,48 +8,23 @@ import { http } from "../../api/http_service";
 
 import { Spinner } from "react-bootstrap";
 
-const CompletedTodos = (params) => {
-  const [todos, setTodos] = useState([]);
-  const [hasMore, setHasMore] = useState(false);
+const OverduedTodos = (params) => {
+  const [todos, loadTodos, removeTodo, updateTodo] = useTodos();
+  const [hasMore, setHasMore] = useState(true);
 
-  const removeTodo = (todoId) => {
-    setTodos(todos.filter((todo) => todo.task_id !== todoId));
-  };
-
-  const updateTodo = (updatedTodo) => {
-    const newTodos = todos.map((todo) => {
-      if (todo.task_id === updatedTodo.task_id) {
-        return updatedTodo;
-      }
-      return todo;
-    });
-
-    setTodos(newTodos);
-  };
-
-  const loadTodos = async (page) => {
+  const fetchTodos = async (page) => {
     const { data } = await http().get(`todo?completed=true&page=${page}`);
 
-    const newTodos = todos.slice(0);
-    Object.keys(data.data).forEach(function (key) {
-      newTodos.push(data.data[key]);
-    });
-    setTodos(newTodos);
-
-    if (page >= data.last_page - 1) {
-      setHasMore(false);
-    }
+    loadTodos(data);
+    
+    setHasMore(page < data.last_page-1);
   };
-
-  useEffect(() => {
-    loadTodos(1);
-  }, []);
 
   return (
     <>
       <InfiniteScroll
         pageStart={0}
-        loadMore={loadTodos}
+        loadMore={fetchTodos}
         hasMore={hasMore}
         loader={
           <div className="loader" key={0}>
@@ -68,4 +44,4 @@ const CompletedTodos = (params) => {
   );
 };
 
-export default CompletedTodos;
+export default OverduedTodos;
